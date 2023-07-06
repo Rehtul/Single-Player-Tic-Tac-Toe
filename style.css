@@ -1,0 +1,127 @@
+@font-face {
+    font-family: threed;
+    src: url(3D.ttf);
+}
+
+body{
+    margin: 0;
+    background: rgba(38, 77, 96, .9);   
+}
+
+nav{
+    background: #253971;
+    height: 2em;
+    color:white;
+    text-align: center;
+    padding-top: 2%;
+    font-family: threed;
+    font-size: 2em;
+}
+
+.intro{
+    color: white;
+}
+.intro>h4{
+    padding-left: 2%;
+    font-size: 1.1em;
+}
+.intro>div{
+    padding: .2%;
+}
+
+.actionbuttons1,.actionbuttons2{
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: .5%;
+    margin: .5%;
+}
+
+.actionbuttons1>button, .actionbuttons2>button{
+    height: 2em;
+    border-radius: .4em;
+}
+
+.results{
+    height: 2.5em;
+    text-align: center;
+}
+
+.gamegamearea{
+    padding-left:25%;
+    padding-right: 25%;
+}
+.gamearea{
+    display: grid;
+    grid-template-rows: auto auto auto;
+}
+
+
+
+.row1,.row2,.row3{
+    margin: .4%;
+    width: 98%;
+    height: 7em;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: .4%;
+}
+
+.row1>button, .row2>button, .row3>button{
+    border-radius: .3em;
+    outline: transparent;
+    border: 1px solid transparent;
+    background-color: #D9E4EC;
+}
+
+button:hover{
+    background-color: gray;
+}
+
+button:active{
+    background-color: cadetblue;
+}
+
+@media only screen and (max-width:500px){
+    @font-face {
+        font-family: threed;
+        src: url(3D.ttf);
+    }
+    body{
+        margin: 0;
+        background: url(Tikbg.jpg);
+        background-size: cover;
+    }
+    nav{
+        background: #253971;
+        height: 2em;
+        color:white;
+        text-align: center;
+        padding-top: 2%;
+        font-family: threed;
+        font-size: 2em;
+    }
+
+    .intro{
+        background: rgba(38, 77, 96, .9);
+        color: white;
+    }
+    .intro>h4, .intro>div{
+        padding: 1%;
+    }
+    .row1,.row2,.row3{
+        width:100%;
+        height: 7em;
+    }
+
+    .gamegamearea{
+        padding: 0%;
+    }
+    .row1>button, .row2>button, .row3>button{
+        background: rgba(188, 236, 224, 0.8);
+    }
+
+    .row1>button:hover, .row2>button:hover, .row3>button:hover{
+        background-color: lightgray;
+    }
+    
+}

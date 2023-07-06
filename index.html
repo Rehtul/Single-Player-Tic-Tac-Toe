@@ -1,0 +1,2165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="intro">
+    <nav>
+        Tic Tac Toe
+    </nav>
+        <h4>
+            Select the Starting Opponent
+        </h4>
+        <div class="actionbuttons1">
+            <button id="playerstart" disabled>Player</button>
+            <button id="computerstart">Computer</button>
+        </div>
+        <div class="actionbuttons2">
+            <button id="start" disabled>Start</button>
+            <button id="reset" disabled>Reset</button>
+        </div>
+        <div class="results">
+            The Results are: <span id="res"></span>
+        </div>
+    </div>
+    <div class="gamegamearea">
+        <div class="gamearea">
+            <div class="row1">
+                <button id="1"></button>
+                <button id="2"></button>
+                <button id="3"></button>
+            </div>
+            <div class="row2">
+                <button id="4"></button>
+                <button id="5"></button>
+                <button id="6"></button>
+            </div>
+            <div class="row3">
+                <button id="7"></button>
+                <button id="8"></button>
+                <button id="9"></button>
+            </div>
+        </div>
+    </div>
+<script>
+    //console.log('hi');
+    let option = 'none';
+
+    let one = document.getElementById('1');
+    let two = document.getElementById('2');
+    let three = document.getElementById('3');
+    let four = document.getElementById('4');
+    let five = document.getElementById('5');
+    let six = document.getElementById('6');
+    let seven = document.getElementById('7');
+    let eight = document.getElementById('8');
+    let nine = document.getElementById('9');
+
+    let start = document.getElementById('start');
+    let reset = document.getElementById('reset');
+    let computerstart = document.getElementById('computerstart');
+
+    let p1 = 0, p2 = 0, p3 = 0, p4 = 0;
+    let c1, c2, c3, c4 = 0;
+
+    reset.addEventListener('click',()=>{
+        window.location.reload();
+    })
+
+    let playerstart = document.getElementById('playerstart');
+    playerstart.addEventListener('click',()=>{
+        option = 'player';
+        start.removeAttribute("disabled");
+        reset.removeAttribute("disabled");
+        playerstart.disabled = 'true';
+        computerstart.disabled = 'true';
+        //console.log(option);
+    },{once:true});
+
+    computerstart.addEventListener('click',()=>{
+        option = 'computer';
+        start.removeAttribute("disabled");
+        reset.removeAttribute("disabled");
+        playerstart.disabled = 'true';
+        computerstart.disabled = 'true';
+        //console.log(option);
+    }, {once: true});
+
+    start.addEventListener('click',()=>{
+        start.disabled = 'true';
+        if( option == 'computer' && p1 == 0){
+            c1 = 5;
+            document.getElementById(String(c1)).style.backgroundColor = '#84F8C8';
+            document.getElementById(String(c1)).innerText = 'X';
+            document.getElementById(String(c1)).disabled = 'true';
+
+                one.addEventListener('click',()=>{
+                    if(p1 == 0)
+                    {
+                        p1 = 1;
+                        //one.disabled = 'true';
+                        one.style.backgroundColor = '#F8EA8C'
+                        one.innerText = 'O';
+                    
+                        seven.disabled = 'true';
+                        seven.style.backgroundColor = '#84F8C8';
+                        seven.innerText = 'X';
+                        c2 = 7;
+    
+                        //2,3,4,6,8,9
+                        if (p2 == 0)
+                        {
+                            two.addEventListener('click',()=>{
+                                if(p2 == 0)
+                                {
+                                                                //Computer wins through 7,5,3 combination
+                                    p2 = 2;
+                                    //two.disabled = 'true';
+                                    two.style.backgroundColor = '#F8EA8C'
+                                    two.innerText = 'O';
+    
+                                    three.disabled = 'true';
+                                    three.style.backgroundColor = '#84F8C8';
+                                    three.innerText = 'X';
+                                    c3 = 3;
+    
+                                    document.getElementById('res').innerText = 'Computer Wins';
+                                    setTimeout(reload, 3000);
+    
+                                    function reload()
+                                    {
+                                        window.location.reload();
+                                    }
+                                }
+                            },{once:true});
+    
+                            three.addEventListener('click',()=>{
+                                if(p2 == 0)
+                                {
+                                    p2 = 3;
+                                    three.style.backgroundColor = '#F8EA8C'
+                                    three.innerText = 'O';
+                                    
+                                    two.disabled = 'true';
+                                    two.style.backgroundColor = '#84F8C8';
+                                    two.innerText = 'X';
+                                    c3 = 2;
+                                    
+                                    //4, 6, 8, 9
+                                    if(p3 == 0)
+                                    {
+                                        four.addEventListener('click',()=>{
+                                            if(p3 == 0)
+                                            {
+                                                p3 = 4;
+                                                four.style.backgroundColor = '#F8EA8C'
+                                                four.innerText = 'O';
+        
+                                                
+                                                eight.disabled = 'true';
+                                                eight.style.backgroundColor = '#84F8C8';
+                                                eight.innerText = 'X';
+                                                c4 = 8;
+                                                
+                                                document.getElementById('res').innerText = 'Computer Wins';
+                                                setTimeout(reload, 3000);
+                                                function reload()
+                                                {
+                                                    window.location.reload();
+                                                }
+                                            }
+                                        },{once:true});
+    
+                                        six.addEventListener('click',()=>{
+                                            p3 = 6;
+                                            six.style.backgroundColor = '#F8EA8C'
+                                            six.innerText = 'O';
+    
+                                            
+                                            nine.disabled = 'true';
+                                            nine.style.backgroundColor = '#84F8C8';
+                                            nine.innerText = 'X';
+                                            c4 = 9;
+    
+                                            if(p4 == 0){
+                                                four.addEventListener('click',()=>{
+                                                    p4 = 4;
+                                                    four.style.backgroundColor = '#F8EA8C'
+                                                    four.innerText = 'O';
+    
+                                                    eight.disabled = 'true';
+                                                    eight.style.backgroundColor = '#84F8C8';
+                                                    eight.innerText = 'X';
+                                                    c4 = 8;
+    
+                                                    document.getElementById('res').innerText = 'Computer Wins';
+                                                    setTimeout(reload, 3000);
+                                                    function reload()
+                                                    {
+                                                        window.location.reload();
+                                                    }
+                                                },{once:true});
+                                                
+                                                eight.addEventListener('click',()=>{
+                                                    p4 = 8;
+                                                    eight.style.backgroundColor = '#F8EA8C'
+                                                    eight.innerText = 'O';
+    
+                                                    four.disabled = 'true';
+                                                    four.style.backgroundColor = '#84F8C8';
+                                                    four.innerText = 'X';
+                                                    c4 = 4;
+    
+                                                    //console.log(p3 + 'p3');
+    
+                                                    document.getElementById('res').innerText = 'Draw';
+                                                    setTimeout(reload, 3000);
+                                                    function reload()
+                                                    {
+                                                        window.location.reload();
+                                                    }
+                                                },{once:true});
+                                                
+                                            }
+                                        },{once:true});
+    
+                                        eight.addEventListener('click',()=>{
+                                            if(p3 == 0)
+                                            {
+                                                p3 = 8;
+                                            eight.style.backgroundColor = '#F8EA8C'
+                                            eight.innerText = 'O';
+    
+                                            
+                                            six.disabled = 'true';
+                                            six.style.backgroundColor = '#84F8C8';
+                                            six.innerText = 'X';
+                                            c4 = 6;
+    
+                                            //4, 9
+                                            if(p4 == 0)
+                                            {
+                                                four.addEventListener('click',()=>{
+                                                    p4 = 4;
+                                                    four.style.backgroundColor = '#F8EA8C'
+                                                    four.innerText = 'O';
+            
+                                                    
+                                                    nine.disabled = 'true';
+                                                    nine.style.backgroundColor = '#84F8C8';
+                                                    nine.innerText = 'X';
+                                                    c4 = 9;
+                                                    document.getElementById('res').innerText = 'Draw';
+                                                    setTimeout(reload, 3000);
+                                                    function reload()
+                                                    {
+                                                        window.location.reload();
+                                                    }
+                                                },{once:true});
+    
+                                                nine.addEventListener('click',()=>{
+                                                    p4 = 9;
+                                                    nine.style.backgroundColor = '#F8EA8C'
+                                                    nine.innerText = 'O';
+            
+                                                    
+                                                    four.disabled = 'true';
+                                                    four.style.backgroundColor = '#84F8C8';
+                                                    four.innerText = 'X';
+                                                    c4 = 4;
+                                                    document.getElementById('res').innerText = 'Draw';
+                                                    setTimeout(reload, 3000);
+                                                    function reload()
+                                                    {
+                                                        window.location.reload();
+                                                    }
+                                                },{once:true});
+                                            }
+                                            }
+                                        },{once:true});
+                                    }
+                                    nine.addEventListener('click',()=>{
+                                        if(p3 == 0)
+                                        {
+                                            p3 = 9;
+                                            nine.style.backgroundColor = '#F8EA8C';
+                                            nine.innerText = 'O';
+        
+                                            eight.disabled = 'true';
+                                            eight.style.backgroundColor = '#84F8C8';
+                                            eight.innerText = 'X';
+                                            c4 = 8;
+        
+                                            document.getElementById('res').innerText = 'Computer Wins';
+                                            setTimeout(reload, 3000);
+                                            function reload()
+                                            {
+                                                window.location.reload();
+                                            }
+                                        }
+        
+                                    },{once:true});
+                                }
+                            },{once:true});
+    
+                            four.addEventListener('click',()=>{
+                                if(p2 == 0)
+                                {
+                                    p2 = 4;
+                                    four.style.backgroundColor = '#F8EA8C'
+                                    four.innerText = 'O';
+                                    
+                                    two.disabled = 'true';
+                                    two.style.backgroundColor = '#84F8C8';
+                                    two.innerText = 'X';
+                                    c3 = 2;
+    
+                                    //3, 6, 8, 9
+                                    if(p3 == 0)
+                                    {
+                                        three.addEventListener('click',()=>{
+                                            p3 = 3;
+                                            three.style.backgroundColor = '#F8EA8C'
+                                            three.innerText = 'O';
+    
+                                            eight.disabled = 'true';
+                                            eight.style.backgroundColor = '#84F8C8';
+                                            eight.innerText = 'X';
+                                            c4 = 8;
+    
+                                            document.getElementById('res').innerText = 'Computer Wins';
+                                            six.disabled = 'true';
+                                            nine.disabled = 'true';
+                                            setTimeout(reload, 3000);
+                                            function reload()
+                                            {
+                                                window.location.reload();
+                                            }
+                                        },{once:true});
+    
+                                        six.addEventListener('click',()=>{
+                                            p3 = 6;
+                                            six.style.backgroundColor = '#F8EA8C'
+                                            six.innerText = 'O';
+    
+                                            eight.disabled = 'true';
+                                            eight.style.backgroundColor = '#84F8C8';
+                                            eight.innerText = 'X';
+                                            c4 = 8;
+    
+                                            document.getElementById('res').innerText = 'Computer Wins';
+                                            six.disabled = 'true';
+                                            nine.disabled = 'true';
+                                            setTimeout(reload, 3000);
+                                            function reload()
+                                            {
+                                                window.location.reload();
+                                            }
+                                        },{once:true});
+    
+                                        eight.addEventListener('click',()=>{
+                                            p3 = 8;
+                                            eight.style.backgroundColor = '#F8EA8C'
+                                            eight.innerText = 'O';
+    
+                                            three.disabled = 'true';
+                                            three.style.backgroundColor = '#84F8C8';
+                                            three.innerText = 'X';
+                                            c4 = 3;
+    
+                                            document.getElementById('res').innerText = 'Computer Wins';
+                                            six.disabled = 'true';
+                                            nine.disabled = 'true';
+                                            setTimeout(reload, 3000);
+                                            function reload()
+                                            {
+                                                window.location.reload();
+                                            }
+                                        },{once:true});
+    
+                                        nine.addEventListener('click',()=>{
+                                            p3 = 9;
+                                            nine.style.backgroundColor = '#F8EA8C'
+                                            nine.innerText = 'O';
+                                            
+                                            eight.disabled = 'true';
+                                            eight.style.backgroundColor = '#84F8C8';
+                                            eight.innerText = 'X';
+                                            c4 = 8;
+    
+                                            document.getElementById('res').innerText = 'Computer Wins';
+                                            three.disabled = 'true';
+                                            six.disabled = 'true';
+                                            setTimeout(reload, 3000);
+                                            function reload()
+                                            {
+                                                window.location.reload();
+                                            }
+                                        },{once:true});
+                                    }
+                                }
+                            },{once:true});
+    
+                            six.addEventListener('click',()=>{
+                                if(p2 == 0)
+                                {
+                                    p2 = 6;
+                                    six.style.backgroundColor = '#F8EA8C'
+                                    six.innerText = 'O';
+                                    
+                                    three.disabled = 'true';
+                                    three.style.backgroundColor = '#84F8C8';
+                                    three.innerText = 'X';
+                                    c3 = 3;
+        
+                                    document.getElementById('res').innerText = 'Computer Wins';
+                                    setTimeout(reload, 3000);
+                                    function reload()
+                                    {
+                                        window.location.reload();
+                                    }
+                                }
+                            },{once:true});
+    
+                            eight.addEventListener('click',()=>{
+                                if(p2 == 0)
+                                {
+                                    p2 = 8;
+                                eight.style.backgroundColor = '#F8EA8C'
+                                eight.innerText = 'O';
+                                
+                                three.disabled = 'true';
+                                three.style.backgroundColor = '#84F8C8';
+                                three.innerText = 'X';
+                                c3 = 3;
+    
+                                document.getElementById('res').innerText = 'Computer Wins';
+                                setTimeout(reload, 3000);
+                                function reload()
+                                {
+                                    window.location.reload();
+                                }
+    
+                                //3, 4, 6, 9
+                               /* if(p3 == 0)
+                                {
+                                    three.addEventListener('click',()=>{
+                                        p3 = 2;
+                                        three.style.backgroundColor = '#F8EA8C'
+                                        three.innerText = 'O';
+    
+                                        four.disabled = 'true';
+                                        four.style.backgroundColor = '#84F8C8';
+                                        four.innerText = 'X';
+                                        c4 = 4;
+    
+                                    },{once:true});
+    
+                                    nine.addEventListener('click',()=>{
+                                        p3 = 2;
+                                        nine.style.backgroundColor = '#F8EA8C'
+                                        nine.innerText = 'O';
+    
+                                        three.disabled = 'true';
+                                        three.style.backgroundColor = '#84F8C8';
+                                        three.innerText = 'X';
+                                        c4 = 2;
+    
+                                        document.getElementById('res').innerText = 'Computer Wins';
+                                        setTimeout(reload, 3000);
+                                        function reload()
+                                        {
+                                            window.location.reload();
+                                        }
+    
+                                    },{once:true});
+                                }*/
+                                }
+                            },{once:true});
+    
+                            nine.addEventListener('click',()=>{
+                                if(p2 == 0)
+                                {
+                                    p2 = 9;
+                                    nine.style.backgroundColor = '#F8EA8C'
+                                    nine.innerText = 'O';
+                                    
+                                    three.disabled = 'true';
+                                    three.style.backgroundColor = '#84F8C8';
+                                    three.innerText = 'X';
+                                    c3 = 2;
+        
+                                    document.getElementById('res').innerText = 'Computer Wins';
+                                    function reload()
+                                    {
+                                        window.location.reload();
+                                    }
+                                }
+                            },{once:true});
+                        }
+                    }
+                },{once:true});
+                
+                two.addEventListener('click',()=>{
+                    if(p1 == 0)
+                    {
+                        p1 = 2;
+                        //two.disabled = 'true';
+                        two.style.backgroundColor = '#F8EA8C'
+                        two.innerText = 'O';
+                    
+                        one.disabled = 'true';
+                        one.style.backgroundColor = '#84F8C8'
+                        one.innerText = 'X';
+                        c2 = 1;
+
+                        //3,4,6,7,8,9
+                        if(p2 == 0)
+                        {
+                            three.addEventListener('click',()=>{
+                                if(p2 == 0)
+                                {
+                                    p2 = 3;
+                                    three.style.backgroundColor = '#F8EA8C';
+                                    three.innerText = 'O';
+
+					                nine.disabled = 'true';
+					                nine.style.backgroundColor = '#84F8C8';
+					                nine.innerText = 'X';
+					                c3 = 9;
+
+							        document.getElementById('res').innerText = 'Computer Wins';
+							        setTimeout(reload, 3000);
+							        function reload()
+							        {
+								        window.location.reload();
+							        }
+                                }
+
+                            },{once:true});
+
+                            four.addEventListener('click',()=>{
+                                if(p2 == 0)
+                                {
+                                    p2 = 4;
+                                    four.style.backgroundColor = '#F8EA8C';
+                                    four.innerText = 'O';
+
+					                nine.disabled = 'true';
+					                nine.style.backgroundColor = '#84F8C8';
+					                nine.innerText = 'X';
+					                c3 = 9;
+
+							        document.getElementById('res').innerText = 'Computer Wins';
+							        setTimeout(reload, 3000);
+							        function reload()
+							        {
+								        window.location.reload();
+							        }
+                                }
+
+                            },{once:true});
+
+                            six.addEventListener('click',()=>{
+                                if(p2 == 0)
+                                {
+                                    p2 = 6;
+                                    six.style.backgroundColor = '#F8EA8C';
+                                    six.innerText = 'O';
+
+					                nine.disabled = 'true';
+					                nine.style.backgroundColor = '#84F8C8';
+					                nine.innerText = 'X';
+					                c3 = 9;
+
+							        document.getElementById('res').innerText = 'Computer Wins';
+							        setTimeout(reload, 3000);
+							        function reload()
+							        {
+								        window.location.reload();
+							        }
+                                }
+
+                            },{once:true});
+
+                            seven.addEventListener('click',()=>{
+                                if(p2 == 0)
+                                {
+                                    p2 = 7;
+                                    seven.style.backgroundColor = '#F8EA8C';
+                                    seven.innerText = 'O';
+
+					                nine.disabled = 'true';
+					                nine.style.backgroundColor = '#84F8C8';
+					                nine.innerText = 'X';
+					                c3 = 9;
+
+							        document.getElementById('res').innerText = 'Computer Wins';
+							        setTimeout(reload, 3000);
+							        function reload()
+							        {
+								        window.location.reload();
+							        }
+                                }
+
+                            },{once:true});
+
+                            eight.addEventListener('click',()=>{
+                                if(p2 == 0)
+                                {
+                                    p2 = 8;
+                                    eight.style.backgroundColor = '#F8EA8C';
+                                    eight.innerText = 'O';
+
+					                nine.disabled = 'true';
+					                nine.style.backgroundColor = '#84F8C8';
+					                nine.innerText = 'X';
+					                c3 = 9;
+
+							        document.getElementById('res').innerText = 'Computer Wins';
+							        setTimeout(reload, 3000);
+							        function reload()
+							        {
+								        window.location.reload();
+							        }
+                                }
+
+                            },{once:true});
+
+                            nine.addEventListener('click',()=>{
+                                if(p2 == 0)
+                                {
+                                    p2 = 9;
+                                    nine.style.backgroundColor = '#F8EA8C';
+                                    nine.innerText = 'O';
+
+					                seven.disabled = 'true';
+					                seven.style.backgroundColor = '#84F8C8';
+					                seven.innerText = 'X';
+					                c3 = 7;
+
+                                    //2, 9, 1, 5 - 3,4,6,7,8
+                                    if(p3 == 0)
+                                    {
+                                        three.addEventListener('click',()=>{
+                                            if(p3 == 0)
+                                            {
+                                                p3 = 3;
+                                                three.style.backgroundColor = '#F8EA8C';
+                                                three.innerText = 'O';
+            
+                                                four.disabled = 'true';
+                                                four.style.backgroundColor = '#84F8C8';
+                                                four.innerText = 'X';
+                                                c4 = 4;
+            
+                                                document.getElementById('res').innerText = 'Computer Wins';
+                                                setTimeout(reload, 3000);
+                                                function reload()
+                                                {
+                                                    window.location.reload();
+                                                }
+                                            }
+            
+                                        },{once:true});
+
+                                        four.addEventListener('click',()=>{
+                                            if(p3 == 0)
+                                            {
+                                                p3 = 4;
+                                                four.style.backgroundColor = '#F8EA8C';
+                                                four.innerText = 'O';
+            
+                                                three.disabled = 'true';
+                                                three.style.backgroundColor = '#84F8C8';
+                                                three.innerText = 'X';
+                                                c4 = 3;
+            
+                                                document.getElementById('res').innerText = 'Computer Wins';
+                                                setTimeout(reload, 3000);
+                                                function reload()
+                                                {
+                                                    window.location.reload();
+                                                }
+                                            }
+            
+                                        },{once:true});
+
+                                        six.addEventListener('click',()=>{
+                                            if(p3 == 0)
+                                            {
+                                                p3 = 6;
+                                                six.style.backgroundColor = '#F8EA8C';
+                                                six.innerText = 'O';
+            
+                                                four.disabled = 'true';
+                                                four.style.backgroundColor = '#84F8C8';
+                                                four.innerText = 'X';
+                                                c4 = 4;
+            
+                                                document.getElementById('res').innerText = 'Computer Wins';
+                                                setTimeout(reload, 3000);
+                                                function reload()
+                                                {
+                                                    window.location.reload();
+                                                }
+                                            }
+            
+                                        },{once:true});
+
+                                        eight.addEventListener('click',()=>{
+                                            if(p3 == 0)
+                                            {
+                                                p3 = 8;
+                                                eight.style.backgroundColor = '#F8EA8C';
+                                                eight.innerText = 'O';
+            
+                                                four.disabled = 'true';
+                                                four.style.backgroundColor = '#84F8C8';
+                                                four.innerText = 'X';
+                                                c4 = 4;
+            
+                                                document.getElementById('res').innerText = 'Computer Wins';
+                                                setTimeout(reload, 3000);
+                                                function reload()
+                                                {
+                                                    window.location.reload();
+                                                }
+                                            }
+            
+                                        },{once:true});
+                                    }
+
+                                }
+
+                            },{once:true});
+                        }
+                    }
+                },{once:true});
+                
+                three.addEventListener('click',()=>{
+                    if(p1 == 0)
+                    {
+                    p1 = 3;
+                    //three.disabled = 'true';
+                    three.style.backgroundColor = '#F8EA8C'
+                    three.innerText = 'O';
+                
+                    nine.disabled = 'true';
+                    nine.style.backgroundColor = '#84F8C8';
+                    nine.innerText = 'X';
+                    c2 = 9;
+
+                    if(p2 == 0)
+                    {
+                        one.addEventListener('click',()=>{
+                            if(p2 == 0)
+                            {
+                                p2 = 1;
+                                one.style.backgroundColor = '#F8EA8C';
+                                one.innerText = 'O';
+
+                                two.disabled = 'true';
+                                two.style.backgroundColor = '#84F8C8';
+                                two.innerText = 'X';
+                                c3 = 2;
+
+                                if(p3 == 0)
+                                {
+                                    four.addEventListener('click',()=>{
+
+                                        p3 = 4;
+                                        four.style.backgroundColor = '#F8EA8C';
+                                        four.innerText = 'O';
+
+                                        seven.disabled = 'true';
+                                        seven.style.backgroundColor = '#84F8C8';
+                                        seven.innerText = 'X';
+                                        c4 = 7;
+
+                                    },{once:true});
+
+                                    six.addEventListener('click',()=>{
+
+                                        p3 = 6;
+                                        six.style.backgroundColor = '#F8EA8C';
+                                        six.innerText = 'O';
+
+                                        eight.disabled = 'true';
+                                        eight.style.backgroundColor = '#84F8C8';
+                                        eight.innerText = 'X';
+                                        c4 = 8;
+
+                                        document.getElementById('res').innerText = 'Computer Wins';
+                                        setTimeout(reload, 3000);
+                                        function reload()
+                                        {
+                                            window.location.reload();
+                                        }
+
+                                    },{once:true});
+
+                                    seven.addEventListener('click',()=>{
+
+                                        p3 = 7;
+                                        seven.style.backgroundColor = '#F8EA8C';
+                                        seven.innerText = 'O';
+
+                                        eight.disabled = 'true';
+                                        eight.style.backgroundColor = '#84F8C8';
+                                        eight.innerText = 'X';
+                                        c4 = 8;
+
+                                        document.getElementById('res').innerText = 'Computer Wins';
+                                        setTimeout(reload, 3000);
+                                        function reload()
+                                        {
+                                            window.location.reload();
+                                        }
+
+                                    },{once:true});
+
+                                    eight.addEventListener('click',()=>{
+
+                                        p3 = 8;
+                                        eight.style.backgroundColor = '#F8EA8C';
+                                        eight.innerText = 'O';
+
+                                        four.disabled = 'true';
+                                        four.style.backgroundColor = '#84F8C8';
+                                        four.innerText = 'X';
+                                        c4 = 4;
+
+                                        if(p4 == 0)
+                                        {
+                                            six.addEventListener('click',()=>{
+                                                if(p4 == 0)
+                                                {
+                                                    p4 = 6;
+                                                    six.style.backgroundColor = '#F8EA8C';
+                                                    six.innerText = 'O';
+            
+                                                    seven.disabled = 'true';
+                                                    seven.style.backgroundColor = '#84F8C8';
+                                                    seven.innerText = 'X';
+                                                    c5 = 7;
+                                                }
+                                            },{once:true});
+
+                                            seven.addEventListener('click',()=>{
+                                                if(p4 == 0)
+                                                {
+                                                    p4 = 7;
+                                                    seven.style.backgroundColor = '#F8EA8C';
+                                                    seven.innerText = 'O';
+            
+                                                    six.disabled = 'true';
+                                                    six.style.backgroundColor = '#84F8C8';
+                                                    six.innerText = 'X';
+                                                    c5 = 6;
+            
+                                                    document.getElementById('res').innerText = 'Computer Wins';
+                                                    setTimeout(reload, 3000);
+                                                    function reload()
+                                                    {
+                                                        window.location.reload();
+                                                    }
+                                                }
+        
+                                            },{once:true});
+                                        }
+
+                                    },{once:true});
+                                }
+                            }
+                        },{once:true});
+
+                        two.addEventListener('click',()=>{
+                            if(p2 == 0)
+                            {
+                                p2 = 2;
+                                two.style.backgroundColor = '#F8EA8C';
+                                two.innerText = 'O';
+
+                                one.disabled = 'true';
+                                one.style.backgroundColor = '#84F8C8';
+                                one.innerText = 'X';
+                                c3 = 1;
+
+                                document.getElementById('res').innerText = 'Computer Wins';
+                                setTimeout(reload, 3000);
+                                function reload()
+                                {
+                                    window.location.reload();
+                                }
+                            }
+                        },{once:true});
+
+                        four.addEventListener('click',()=>{
+                            if(p2 == 0)
+                            {
+                                p2 = 4;
+                                four.style.backgroundColor = '#F8EA8C';
+                                four.innerText = 'O';
+
+                                one.disabled = 'true';
+                                one.style.backgroundColor = '#84F8C8';
+                                one.innerText = 'X';
+                                c3 = 1;
+
+                                document.getElementById('res').innerText = 'Computer Wins';
+                                setTimeout(reload, 3000);
+                                function reload()
+                                {
+                                    window.location.reload();
+                                }
+                            }
+                        },{once:true});
+
+                        six.addEventListener('click',()=>{
+                            if(p2 == 0)
+                            {
+                                p2 = 6;
+                                six.style.backgroundColor = '#F8EA8C';
+                                six.innerText = 'O';
+
+                                one.disabled = 'true';
+                                one.style.backgroundColor = '#84F8C8';
+                                one.innerText = 'X';
+                                c3 = 1;
+
+                                document.getElementById('res').innerText = 'Computer Wins';
+                                setTimeout(reload, 3000);
+                                function reload()
+                                {
+                                    window.location.reload();
+                                }
+                            }
+                        },{once:true});
+
+                        seven.addEventListener('click',()=>{
+                            if(p2 == 0)
+                            {
+                                p2 = 7;
+                                seven.style.backgroundColor = '#F8EA8C';
+                                seven.innerText = 'O';
+
+                                one.disabled = 'true';
+                                one.style.backgroundColor = '#84F8C8';
+                                one.innerText = 'X';
+                                c3 = 1;
+
+                                document.getElementById('res').innerText = 'Computer Wins';
+                                setTimeout(reload, 3000);
+                                function reload()
+                                {
+                                    window.location.reload();
+                                }
+                            }
+                        },{once:true});
+
+                        eight.addEventListener('click',()=>{
+                            if(p2 == 0)
+                            {
+                                p2 = 8;
+                                eight.style.backgroundColor = '#F8EA8C';
+                                eight.innerText = 'O';
+
+                                one.disabled = 'true';
+                                one.style.backgroundColor = '#84F8C8';
+                                one.innerText = 'X';
+                                c3 = 1;
+
+                                document.getElementById('res').innerText = 'Computer Wins';
+                                setTimeout(reload, 3000);
+                                function reload()
+                                {
+                                    window.location.reload();
+                                }
+                            }
+                        },{once:true});
+                    }
+
+                    }
+                },{once:true});
+                
+                four.addEventListener('click',()=>{
+                    if(p1 == 0){
+                        p1 = 4;
+                        //four.disabled = 'true';
+                        four.style.backgroundColor = '#F8EA8C'
+                        four.innerText = 'O';
+
+                        seven.disabled = 'true';
+                        seven.style.backgroundColor = '#84F8C8';
+                        seven.innerText = 'X';
+                        c2 = 7;
+
+                        if(p2 == 0)
+                        {
+                            one.addEventListener('click',()=>{
+                                if(p2 == 0)
+                                {
+                                    p2 = 1;
+                                    one.style.backgroundColor = '#F8EA8C'
+                                    one.innerText = 'O';
+            
+                                    three.disabled = 'true';
+                                    three.style.backgroundColor = '#84F8C8';
+                                    three.innerText = 'X';
+                                    c3 = 3;
+                                    
+                                    document.getElementById('res').innerText = 'Computer Wins';
+                                    setTimeout(reload, 3000);
+                                    function reload()
+                                    {
+                                        window.location.reload();
+                                    }
+                                }
+                            },{once:true});
+
+                            two.addEventListener('click',()=>{
+                                if(p2 == 0)
+                                {
+                                    p2 = 2;
+                                    two.style.backgroundColor = '#F8EA8C'
+                                    two.innerText = 'O';
+            
+                                    three.disabled = 'true';
+                                    three.style.backgroundColor = '#84F8C8';
+                                    three.innerText = 'X';
+                                    c3 = 3;
+                                    
+                                    document.getElementById('res').innerText = 'Computer Wins';
+                                    setTimeout(reload, 3000);
+                                    function reload()
+                                    {
+                                        window.location.reload();
+                                    }
+                                }
+                            },{once:true});
+
+                            three.addEventListener('click',()=>{
+                                if(p2 == 0)
+                                {
+                                    p2 = 3;
+                                    three.style.backgroundColor = '#F8EA8C'
+                                    three.innerText = 'O';
+            
+                                    one.disabled = 'true';
+                                    one.style.backgroundColor = '#84F8C8';
+                                    one.innerText = 'X';
+                                    c3 = 3;
+
+                                    if(p3 == 0)
+                                    {
+                                        two.addEventListener('click',()=>{
+                                            if(p3 == 0)
+                                            {
+                                                p3 = 2;
+                                                two.style.backgroundColor = '#F8EA8C'
+                                                two.innerText = 'O';
+                        
+                                                nine.disabled = 'true';
+                                                nine.style.backgroundColor = '#84F8C8';
+                                                nine.innerText = 'X';
+                                                c4 = 9;
+                                                
+                                                document.getElementById('res').innerText = 'Computer Wins';
+                                                setTimeout(reload, 3000);
+                                                function reload()
+                                                {
+                                                    window.location.reload();
+                                                }
+                                            }
+                                        },{once:true});
+
+                                        six.addEventListener('click',()=>{
+                                            if(p3 == 0)
+                                            {
+                                                p3 = 6;
+                                                six.style.backgroundColor = '#F8EA8C'
+                                                six.innerText = 'O';
+                        
+                                                nine.disabled = 'true';
+                                                nine.style.backgroundColor = '#84F8C8';
+                                                nine.innerText = 'X';
+                                                c4 = 9;
+                                                
+                                                document.getElementById('res').innerText = 'Computer Wins';
+                                                setTimeout(reload, 3000);
+                                                function reload()
+                                                {
+                                                    window.location.reload();
+                                                }
+                                            }
+                                        },{once:true});
+
+                                        eight.addEventListener('click',()=>{
+                                            if(p3 == 0)
+                                            {
+                                                p3 = 8;
+                                                eight.style.backgroundColor = '#F8EA8C'
+                                                eight.innerText = 'O';
+                        
+                                                nine.disabled = 'true';
+                                                nine.style.backgroundColor = '#84F8C8';
+                                                nine.innerText = 'X';
+                                                c4 = 9;
+                                                
+                                                document.getElementById('res').innerText = 'Computer Wins';
+                                                setTimeout(reload, 3000);
+                                                function reload()
+                                                {
+                                                    window.location.reload();
+                                                }
+                                            }
+                                        },{once:true});
+
+                                        nine.addEventListener('click',()=>{
+                                            if(p3 == 0)
+                                            {
+                                                p3 = 9;
+                                                nine.style.backgroundColor = '#F8EA8C'
+                                                nine.innerText = 'O';
+                        
+                                                six.disabled = 'true';
+                                                six.style.backgroundColor = '#84F8C8';
+                                                six.innerText = 'X';
+                                                c4 = 6;
+                                                
+                                                document.getElementById('res').innerText = 'Draw';
+                                                setTimeout(reload, 3000);
+                                                function reload()
+                                                {
+                                                    window.location.reload();
+                                                }
+                                            }
+                                        },{once:true});
+                                    }
+                                    
+                                }
+                            },{once:true});
+
+                            six.addEventListener('click',()=>{
+                                if(p2 == 0)
+                                {
+                                    p2 = 6;
+                                    six.style.backgroundColor = '#F8EA8C'
+                                    six.innerText = 'O';
+            
+                                    three.disabled = 'true';
+                                    three.style.backgroundColor = '#84F8C8';
+                                    three.innerText = 'X';
+                                    c3 = 3;
+                                    
+                                    document.getElementById('res').innerText = 'Computer Wins';
+                                    setTimeout(reload, 3000);
+                                    function reload()
+                                    {
+                                        window.location.reload();
+                                    }
+                                }
+                            },{once:true});
+
+                            eight.addEventListener('click',()=>{
+                                if(p2 == 0)
+                                {
+                                    p2 = 8;
+                                    eight.style.backgroundColor = '#F8EA8C'
+                                    eight.innerText = 'O';
+            
+                                    three.disabled = 'true';
+                                    three.style.backgroundColor = '#84F8C8';
+                                    three.innerText = 'X';
+                                    c3 = 3;
+                                    
+                                    document.getElementById('res').innerText = 'Computer Wins';
+                                    setTimeout(reload, 3000);
+                                    function reload()
+                                    {
+                                        window.location.reload();
+                                    }
+                                }
+                            },{once:true});
+
+                            nine.addEventListener('click',()=>{
+                                if(p2 == 0)
+                                {
+                                    p2 = 9;
+                                    nine.style.backgroundColor = '#F8EA8C'
+                                    nine.innerText = 'O';
+            
+                                    three.disabled = 'true';
+                                    three.style.backgroundColor = '#84F8C8';
+                                    three.innerText = 'X';
+                                    c3 = 3;
+                                    
+                                    document.getElementById('res').innerText = 'Computer Wins';
+                                    setTimeout(reload, 3000);
+                                    function reload()
+                                    {
+                                        window.location.reload();
+                                    }
+                                }
+                            },{once:true});
+                        }
+                    }
+                },{once:true});
+
+                six.addEventListener('click',()=>{
+                    if(p1 == 0)
+                    {
+                        p1 = 6;
+                        //six.disabled = 'true';
+                        six.style.backgroundColor = '#F8EA8C'
+                        six.innerText = 'O';
+    
+                        nine.disabled = 'true';
+                        nine.style.backgroundColor = '#84F8C8';
+                        nine.innerText = 'X';
+                        c2 = 9;
+
+                        if(p2 == 0)
+                        {
+                            one.addEventListener('click',()=>{
+                                if(p2 == 0)
+                                {
+                                    p2 = 1;
+                                    one.style.backgroundColor = '#F8EA8C'
+                                    one.innerText = 'O';
+            
+                                    two.disabled = 'true';
+                                    two.style.backgroundColor = '#84F8C8';
+                                    two.innerText = 'X';
+                                    c3 = 1;
+                                    
+                                    if(p3 == 0)
+                                    {
+                                        three.addEventListener('click',()=>{
+                                            if(p3 == 0)
+                                            {
+                                                p3 = 3;
+                                                three.style.backgroundColor = '#F8EA8C'
+                                                three.innerText = 'O';
+                        
+                                                eight.disabled = 'true';
+                                                eight.style.backgroundColor = '#84F8C8';
+                                                eight.innerText = 'X';
+                                                c3 = 8;
+                                                
+                                                document.getElementById('res').innerText = 'Computer Wins';
+                                                setTimeout(reload, 3000);
+                                                function reload()
+                                                {
+                                                    window.location.reload();
+                                                }
+                                            }
+                                        },{once:true});
+
+                                        four.addEventListener('click',()=>{
+                                            if(p3 == 0)
+                                            {
+                                                p3 = 4;
+                                                four.style.backgroundColor = '#F8EA8C'
+                                                four.innerText = 'O';
+                        
+                                                eight.disabled = 'true';
+                                                eight.style.backgroundColor = '#84F8C8';
+                                                eight.innerText = 'X';
+                                                c3 = 8;
+                                                
+                                                document.getElementById('res').innerText = 'Computer Wins';
+                                                setTimeout(reload, 3000);
+                                                function reload()
+                                                {
+                                                    window.location.reload();
+                                                }
+                                            }
+                                        },{once:true});
+
+                                        seven.addEventListener('click',()=>{
+                                            if(p3 == 0)
+                                            {
+                                                p3 = 7;
+                                                seven.style.backgroundColor = '#F8EA8C'
+                                                seven.innerText = 'O';
+                        
+                                                eight.disabled = 'true';
+                                                eight.style.backgroundColor = '#84F8C8';
+                                                eight.innerText = 'X';
+                                                c3 = 8;
+                                                
+                                                document.getElementById('res').innerText = 'Computer Wins';
+                                                setTimeout(reload, 3000);
+                                                function reload()
+                                                {
+                                                    window.location.reload();
+                                                }
+                                            }
+                                        },{once:true});
+
+                                        eight.addEventListener('click',()=>{
+                                            if(p3 == 0)
+                                            {
+                                                p3 = 8;
+                                                eight.style.backgroundColor = '#F8EA8C'
+                                                eight.innerText = 'O';
+                        
+                                                four.disabled = 'true';
+                                                four.style.backgroundColor = '#84F8C8';
+                                                four.innerText = 'X';
+                                                c3 = 4;
+                                                
+                                                document.getElementById('res').innerText = 'Draw';
+                                                setTimeout(reload, 3000);
+                                                function reload()
+                                                {
+                                                    window.location.reload();
+                                                }
+                                            }
+                                        },{once:true});
+                                    }
+                                }
+                            },{once:true});
+
+                            two.addEventListener('click',()=>{
+                                if(p2 == 0)
+                                {
+                                    p2 = 2;
+                                    two.style.backgroundColor = '#F8EA8C'
+                                    two.innerText = 'O';
+            
+                                    one.disabled = 'true';
+                                    one.style.backgroundColor = '#84F8C8';
+                                    one.innerText = 'X';
+                                    c3 = 1;
+                                    
+                                    document.getElementById('res').innerText = 'Computer Wins';
+                                    setTimeout(reload, 3000);
+                                    function reload()
+                                    {
+                                        window.location.reload();
+                                    }
+                                }
+                            },{once:true});
+
+                            three.addEventListener('click',()=>{
+                                if(p2 == 0)
+                                {
+                                    p2 = 3;
+                                    three.style.backgroundColor = '#F8EA8C'
+                                    three.innerText = 'O';
+            
+                                    one.disabled = 'true';
+                                    one.style.backgroundColor = '#84F8C8';
+                                    one.innerText = 'X';
+                                    c3 = 1;
+                                    
+                                    document.getElementById('res').innerText = 'Computer Wins';
+                                    setTimeout(reload, 3000);
+                                    function reload()
+                                    {
+                                        window.location.reload();
+                                    }
+                                }
+                            },{once:true});
+
+                            four.addEventListener('click',()=>{
+                                if(p2 == 0)
+                                {
+                                    p2 = 4;
+                                    four.style.backgroundColor = '#F8EA8C'
+                                    four.innerText = 'O';
+            
+                                    one.disabled = 'true';
+                                    one.style.backgroundColor = '#84F8C8';
+                                    one.innerText = 'X';
+                                    c3 = 1;
+                                    
+                                    document.getElementById('res').innerText = 'Computer Wins';
+                                    setTimeout(reload, 3000);
+                                    function reload()
+                                    {
+                                        window.location.reload();
+                                    }
+                                }
+                            },{once:true});
+
+                            seven.addEventListener('click',()=>{
+                                if(p2 == 0)
+                                {
+                                    p2 = 7;
+                                    seven.style.backgroundColor = '#F8EA8C'
+                                    seven.innerText = 'O';
+            
+                                    one.disabled = 'true';
+                                    one.style.backgroundColor = '#84F8C8';
+                                    one.innerText = 'X';
+                                    c3 = 1;
+                                    
+                                    document.getElementById('res').innerText = 'Computer Wins';
+                                    setTimeout(reload, 3000);
+                                    function reload()
+                                    {
+                                        window.location.reload();
+                                    }
+                                }
+                            },{once:true});
+
+                            eight.addEventListener('click',()=>{
+                                if(p2 == 0)
+                                {
+                                    p2 = 8;
+                                    eight.style.backgroundColor = '#F8EA8C'
+                                    eight.innerText = 'O';
+            
+                                    one.disabled = 'true';
+                                    one.style.backgroundColor = '#84F8C8';
+                                    one.innerText = 'X';
+                                    c3 = 1;
+                                    
+                                    document.getElementById('res').innerText = 'Computer Wins';
+                                    setTimeout(reload, 3000);
+                                    function reload()
+                                    {
+                                        window.location.reload();
+                                    }
+                                }
+                            },{once:true});
+                        }
+    
+                    }
+                },{once:true});
+
+                seven.addEventListener('click',()=>{
+                    if(p1 == 0)
+                    {
+                        p1 = 5;
+                        //seven.disabled = 'true';
+                        seven.style.backgroundColor = '#F8EA8C'
+                        seven.innerText = 'O';
+
+                        nine.disabled = 'true';
+                        nine.style.backgroundColor = '#84F8C8';
+                        nine.innerText = 'X';
+                        c2 = 9;
+
+                        if(p2 == 0)
+                        {
+                            one.addEventListener('click',()=>{
+                                if(p2 == 0)
+                                {
+                                    p2 = 1;
+                                    //seven.disabled = 'true';
+                                    one.style.backgroundColor = '#F8EA8C'
+                                    one.innerText = 'O';
+            
+                                    four.disabled = 'true';
+                                    four.style.backgroundColor = '#84F8C8';
+                                    four.innerText = 'X';
+                                    c3 = 4;
+
+                                    if(p3 == 0)
+                                    {
+                                        two.addEventListener('click',()=>{
+                                            if(p3 == 0)
+                                            {
+                                                p3 = 2;
+                                                //seven.disabled = 'true';
+                                                two.style.backgroundColor = '#F8EA8C'
+                                                two.innerText = 'O';
+                        
+                                                six.disabled = 'true';
+                                                six.style.backgroundColor = '#84F8C8';
+                                                six.innerText = 'X';
+                                                c4 = 6;
+            
+                                                document.getElementById('res').innerText = 'Computer Wins';
+                                                setTimeout(reload, 3000);
+                                                function reload()
+                                                {
+                                                    window.location.reload();
+                                                }
+                                            }
+                                        },{once:true});
+
+                                        three.addEventListener('click',()=>{
+                                            if(p3 == 0)
+                                            {
+                                                p3 = 3;
+                                                //seven.disabled = 'true';
+                                                three.style.backgroundColor = '#F8EA8C'
+                                                three.innerText = 'O';
+                        
+                                                six.disabled = 'true';
+                                                six.style.backgroundColor = '#84F8C8';
+                                                six.innerText = 'X';
+                                                c4 = 6;
+            
+                                                document.getElementById('res').innerText = 'Computer Wins';
+                                                setTimeout(reload, 3000);
+                                                function reload()
+                                                {
+                                                    window.location.reload();
+                                                }
+                                            }
+                                        },{once:true});
+
+                                        six.addEventListener('click',()=>{
+                                            if(p3 == 0)
+                                            {
+                                                p3 = 6;
+                                                //seven.disabled = 'true';
+                                                six.style.backgroundColor = '#F8EA8C'
+                                                six.innerText = 'O';
+                        
+                                                two.disabled = 'true';
+                                                two.style.backgroundColor = '#84F8C8';
+                                                two.innerText = 'X';
+                                                c4 = 2;
+
+                                                if(p4 == 0)
+                                                {
+                                                    three.addEventListener('click',()=>{
+                                                        if(p4 == 0)
+                                                        {
+                                                            p4 = 3;
+                                                            //seven.disabled = 'true';
+                                                            three.style.backgroundColor = '#F8EA8C'
+                                                            three.innerText = 'O';
+                                    
+                                                            eight.disabled = 'true';
+                                                            eight.style.backgroundColor = '#84F8C8';
+                                                            eight.innerText = 'X';
+                                                            c5 = 8;
+                        
+                                                            document.getElementById('res').innerText = 'Computer Wins';
+                                                            setTimeout(reload, 3000);
+                                                            function reload()
+                                                            {
+                                                                window.location.reload();
+                                                            }
+                                                        }
+                                                    },{once:true});
+
+                                                    eight.addEventListener('click',()=>{
+                                                        if(p4 == 0)
+                                                        {
+                                                            p4 = 8;
+                                                            //seven.disabled = 'true';
+                                                            eight.style.backgroundColor = '#F8EA8C'
+                                                            eight.innerText = 'O';
+                                    
+                                                            three.disabled = 'true';
+                                                            three.style.backgroundColor = '#84F8C8';
+                                                            three.innerText = 'X';
+                                                            c5 = 3;
+                        
+                                                            document.getElementById('res').innerText = 'Draw';
+                                                            setTimeout(reload, 3000);
+                                                            function reload()
+                                                            {
+                                                                window.location.reload();
+                                                            }
+                                                        }
+                                                    },{once:true});
+                                                }
+            
+
+                                            }
+                                        },{once:true});
+
+                                        eight.addEventListener('click',()=>{
+                                            if(p3 == 0)
+                                            {
+                                                p3 = 8;
+                                                //seven.disabled = 'true';
+                                                eight.style.backgroundColor = '#F8EA8C'
+                                                eight.innerText = 'O';
+                        
+                                                six.disabled = 'true';
+                                                six.style.backgroundColor = '#84F8C8';
+                                                six.innerText = 'X';
+                                                c4 = 6;
+            
+                                                document.getElementById('res').innerText = 'Computer Wins';
+                                                setTimeout(reload, 3000);
+                                                function reload()
+                                                {
+                                                    window.location.reload();
+                                                }
+                                            }
+                                        },{once:true});
+                                    }
+                                }
+                            },{once:true});
+
+                            two.addEventListener('click',()=>{
+                                if(p2 == 0)
+                                {
+                                    p2 = 2;
+                                    //seven.disabled = 'true';
+                                    two.style.backgroundColor = '#F8EA8C'
+                                    two.innerText = 'O';
+            
+                                    one.disabled = 'true';
+                                    one.style.backgroundColor = '#84F8C8';
+                                    one.innerText = 'X';
+                                    c3 = 1;
+
+                                    document.getElementById('res').innerText = 'Computer Wins';
+                                    setTimeout(reload, 3000);
+                                    function reload()
+                                    {
+                                        window.location.reload();
+                                    }
+                                }
+                            },{once:true});
+
+                            three.addEventListener('click',()=>{
+                                if(p2 == 0)
+                                {
+                                    p2 = 3;
+                                    //seven.disabled = 'true';
+                                    three.style.backgroundColor = '#F8EA8C'
+                                    three.innerText = 'O';
+            
+                                    one.disabled = 'true';
+                                    one.style.backgroundColor = '#84F8C8';
+                                    one.innerText = 'X';
+                                    c3 = 1;
+
+                                    document.getElementById('res').innerText = 'Computer Wins';
+                                    setTimeout(reload, 3000);
+                                    function reload()
+                                    {
+                                        window.location.reload();
+                                    }
+                                }
+                            },{once:true});
+
+                            four.addEventListener('click',()=>{
+                                if(p2 == 0)
+                                {
+                                    p2 = 4;
+                                    //seven.disabled = 'true';
+                                    four.style.backgroundColor = '#F8EA8C'
+                                    four.innerText = 'O';
+            
+                                    one.disabled = 'true';
+                                    one.style.backgroundColor = '#84F8C8';
+                                    one.innerText = 'X';
+                                    c3 = 1;
+
+                                    document.getElementById('res').innerText = 'Computer Wins';
+                                    setTimeout(reload, 3000);
+                                    function reload()
+                                    {
+                                        window.location.reload();
+                                    }
+                                }
+                            },{once:true});
+
+                            six.addEventListener('click',()=>{
+                                if(p2 == 0)
+                                {
+                                    p2 = 6;
+                                    //seven.disabled = 'true';
+                                    six.style.backgroundColor = '#F8EA8C'
+                                    six.innerText = 'O';
+            
+                                    one.disabled = 'true';
+                                    one.style.backgroundColor = '#84F8C8';
+                                    one.innerText = 'X';
+                                    c3 = 1;
+
+                                    document.getElementById('res').innerText = 'Computer Wins';
+                                    setTimeout(reload, 3000);
+                                    function reload()
+                                    {
+                                        window.location.reload();
+                                    }
+                                }
+                            },{once:true});
+
+                            eight.addEventListener('click',()=>{
+                                if(p2 == 0)
+                                {
+                                    p2 = 8;
+                                    //seven.disabled = 'true';
+                                    eight.style.backgroundColor = '#F8EA8C'
+                                    eight.innerText = 'O';
+            
+                                    one.disabled = 'true';
+                                    one.style.backgroundColor = '#84F8C8';
+                                    one.innerText = 'X';
+                                    c3 = 1;
+
+                                    document.getElementById('res').innerText = 'Computer Wins';
+                                    setTimeout(reload, 3000);
+                                    function reload()
+                                    {
+                                        window.location.reload();
+                                    }
+                                }
+                            },{once:true});
+                        }
+                    }
+                },{once:true});
+
+                eight.addEventListener('click',()=>{
+                    if(p1 == 0)
+                    {
+                        p1 = 8;
+                        //eight.disabled = 'true';
+                        eight.style.backgroundColor = '#F8EA8C'
+                        eight.innerText = 'O';
+    
+                        seven.disabled = 'true';
+                        seven.style.backgroundColor = '#84F8C8';
+                        seven.innerText = 'X';
+                        c2 = 9;
+
+                        if(p2 == 0)
+                        {
+                            one.addEventListener('click',()=>{
+                                if(p2 == 0)
+                                {
+                                    p2 = 1;
+                                    //seven.disabled = 'true';
+                                    one.style.backgroundColor = '#F8EA8C'
+                                    one.innerText = 'O';
+            
+                                    three.disabled = 'true';
+                                    three.style.backgroundColor = '#84F8C8';
+                                    three.innerText = 'X';
+                                    c3 = 3;
+    
+                                    document.getElementById('res').innerText = 'Computer Wins';
+                                    setTimeout(reload, 3000);
+                                    function reload()
+                                    {
+                                        window.location.reload();
+                                    }
+                                }
+                            },{once:true});
+
+                            two.addEventListener('click',()=>{
+                                if(p2 == 0)
+                                {
+                                    p2 = 2;
+                                    //seven.disabled = 'true';
+                                    two.style.backgroundColor = '#F8EA8C'
+                                    two.innerText = 'O';
+            
+                                    three.disabled = 'true';
+                                    three.style.backgroundColor = '#84F8C8';
+                                    three.innerText = 'X';
+                                    c3 = 3;
+    
+                                    document.getElementById('res').innerText = 'Computer Wins';
+                                    setTimeout(reload, 3000);
+                                    function reload()
+                                    {
+                                        window.location.reload();
+                                    }
+                                }
+                            },{once:true});
+
+                            three.addEventListener('click',()=>{
+                                if(p2 == 0)
+                                {
+                                    p2 = 3;
+                                    //seven.disabled = 'true';
+                                    three.style.backgroundColor = '#F8EA8C'
+                                    three.innerText = 'O';
+            
+                                    nine.disabled = 'true';
+                                    nine.style.backgroundColor = '#84F8C8';
+                                    nine.innerText = 'X';
+                                    c3 = 9;
+
+                                    if(p3 == 0)
+                                    {
+                                        one.addEventListener('click',()=>{
+                                            if(p3 == 0)
+                                            {
+                                                p3 = 1;
+                                                //seven.disabled = 'true';
+                                                one.style.backgroundColor = '#F8EA8C'
+                                                one.innerText = 'O';
+                        
+                                                two.disabled = 'true';
+                                                two.style.backgroundColor = '#84F8C8';
+                                                two.innerText = 'X';
+                                                c4 = 2;
+                
+                                                document.getElementById('res').innerText = 'Draw';
+                                                setTimeout(reload, 3000);
+                                                function reload()
+                                                {
+                                                    window.location.reload();
+                                                }
+                                            }
+                                        },{once:true});
+
+                                        two.addEventListener('click',()=>{
+                                            if(p3 == 0)
+                                            {
+                                                p3 = 2;
+                                                //seven.disabled = 'true';
+                                                two.style.backgroundColor = '#F8EA8C'
+                                                two.innerText = 'O';
+                        
+                                                one.disabled = 'true';
+                                                one.style.backgroundColor = '#84F8C8';
+                                                one.innerText = 'X';
+                                                c4 = 6;
+                
+                                                document.getElementById('res').innerText = 'Computer Wins';
+                                                setTimeout(reload, 3000);
+                                                function reload()
+                                                {
+                                                    window.location.reload();
+                                                }
+                                            }
+                                        },{once:true});
+
+                                        four.addEventListener('click',()=>{
+                                            if(p3 == 0)
+                                            {
+                                                p3 = 4;
+                                                //seven.disabled = 'true';
+                                                four.style.backgroundColor = '#F8EA8C'
+                                                four.innerText = 'O';
+                        
+                                                one.disabled = 'true';
+                                                one.style.backgroundColor = '#84F8C8';
+                                                one.innerText = 'X';
+                                                c4 = 6;
+                
+                                                document.getElementById('res').innerText = 'Computer Wins';
+                                                setTimeout(reload, 3000);
+                                                function reload()
+                                                {
+                                                    window.location.reload();
+                                                }
+                                            }
+                                        },{once:true});
+
+                                        six.addEventListener('click',()=>{
+                                            if(p3 == 0)
+                                            {
+                                                p3 = 6;
+                                                //seven.disabled = 'true';
+                                                six.style.backgroundColor = '#F8EA8C'
+                                                six.innerText = 'O';
+                        
+                                                one.disabled = 'true';
+                                                one.style.backgroundColor = '#84F8C8';
+                                                one.innerText = 'X';
+                                                c4 = 6;
+                
+                                                document.getElementById('res').innerText = 'Computer Wins';
+                                                setTimeout(reload, 3000);
+                                                function reload()
+                                                {
+                                                    window.location.reload();
+                                                }
+                                            }
+                                        },{once:true});
+                                    }
+                                }
+                            },{once:true});
+
+                            four.addEventListener('click',()=>{
+                                if(p2 == 0)
+                                {
+                                    p2 = 4;
+                                    //seven.disabled = 'true';
+                                    four.style.backgroundColor = '#F8EA8C'
+                                    four.innerText = 'O';
+            
+                                    three.disabled = 'true';
+                                    three.style.backgroundColor = '#84F8C8';
+                                    three.innerText = 'X';
+                                    c3 = 3;
+    
+                                    document.getElementById('res').innerText = 'Computer Wins';
+                                    setTimeout(reload, 3000);
+                                    function reload()
+                                    {
+                                        window.location.reload();
+                                    }
+                                }
+                            },{once:true});
+
+                            six.addEventListener('click',()=>{
+                                if(p2 == 0)
+                                {
+                                    p2 = 6;
+                                    //seven.disabled = 'true';
+                                    six.style.backgroundColor = '#F8EA8C'
+                                    six.innerText = 'O';
+            
+                                    three.disabled = 'true';
+                                    three.style.backgroundColor = '#84F8C8';
+                                    three.innerText = 'X';
+                                    c3 = 3;
+    
+                                    document.getElementById('res').innerText = 'Computer Wins';
+                                    setTimeout(reload, 3000);
+                                    function reload()
+                                    {
+                                        window.location.reload();
+                                    }
+                                }
+                            },{once:true});
+
+                            nine.addEventListener('click',()=>{
+                                if(p2 == 0)
+                                {
+                                    p2 = 9;
+                                    //seven.disabled = 'true';
+                                    nine.style.backgroundColor = '#F8EA8C'
+                                    nine.innerText = 'O';
+            
+                                    three.disabled = 'true';
+                                    three.style.backgroundColor = '#84F8C8';
+                                    three.innerText = 'X';
+                                    c3 = 3;
+    
+                                    document.getElementById('res').innerText = 'Computer Wins';
+                                    setTimeout(reload, 3000);
+                                    function reload()
+                                    {
+                                        window.location.reload();
+                                    }
+                                }
+                            },{once:true});
+                        }
+                    }
+                },{once:true});
+
+                nine.addEventListener('click',()=>{
+                    if(p1 == 0)
+                    {
+                        p1 = 9;
+                        //nine.disabled = 'true';
+                        nine.style.backgroundColor = '#F8EA8C'
+                        nine.innerText = 'O';
+    
+                        seven.disabled = 'true';
+                        seven.style.backgroundColor = '#84F8C8';
+                        seven.innerText = 'X';
+                        c2 = 9;
+
+                        if(p2 == 0)
+                        {
+                            one.addEventListener('click',()=>{
+                                if(p2 == 0)
+                                {
+                                    p2 = 1;
+                                    //seven.disabled = 'true';
+                                    one.style.backgroundColor = '#F8EA8C'
+                                    one.innerText = 'O';
+            
+                                    three.disabled = 'true';
+                                    three.style.backgroundColor = '#84F8C8';
+                                    three.innerText = 'X';
+                                    c3 = 3;
+    
+                                    document.getElementById('res').innerText = 'Computer Wins';
+                                    setTimeout(reload, 3000);
+                                    function reload()
+                                    {
+                                        window.location.reload();
+                                    }
+                                }
+                            },{once:true});
+
+                            two.addEventListener('click',()=>{
+                                if(p2 == 0)
+                                {
+                                    p2 = 2;
+                                    //seven.disabled = 'true';
+                                    two.style.backgroundColor = '#F8EA8C'
+                                    two.innerText = 'O';
+            
+                                    three.disabled = 'true';
+                                    three.style.backgroundColor = '#84F8C8';
+                                    three.innerText = 'X';
+                                    c3 = 3;
+    
+                                    document.getElementById('res').innerText = 'Computer Wins';
+                                    setTimeout(reload, 3000);
+                                    function reload()
+                                    {
+                                        window.location.reload();
+                                    }
+                                }
+                            },{once:true});
+
+                            three.addEventListener('click',()=>{
+                                if(p2 == 0)
+                                {
+                                    p2 = 3;
+                                    //seven.disabled = 'true';
+                                    three.style.backgroundColor = '#F8EA8C'
+                                    three.innerText = 'O';
+            
+                                    six.disabled = 'true';
+                                    six.style.backgroundColor = '#84F8C8';
+                                    six.innerText = 'X';
+                                    c3 = 3;
+
+                                    if(p3 == 0)
+                                    {
+                                        one.addEventListener('click',()=>{
+                                            if(p3 == 0)
+                                            {
+                                                p3 = 1;
+                                                //seven.disabled = 'true';
+                                                one.style.backgroundColor = '#F8EA8C'
+                                                one.innerText = 'O';
+                        
+                                                four.disabled = 'true';
+                                                four.style.backgroundColor = '#84F8C8';
+                                                four.innerText = 'X';
+                                                c4 = 4;
+                
+                                                document.getElementById('res').innerText = 'Computer Wins';
+                                                setTimeout(reload, 3000);
+                                                function reload()
+                                                {
+                                                    window.location.reload();
+                                                }
+                                            }
+                                        },{once:true});
+
+                                        four.addEventListener('click',()=>{
+                                            if(p3 == 0)
+                                            {
+                                                p3 = 4;
+                                                //seven.disabled = 'true';
+                                                four.style.backgroundColor = '#F8EA8C'
+                                                four.innerText = 'O';
+                        
+                                                one.disabled = 'true';
+                                                one.style.backgroundColor = '#84F8C8';
+                                                one.innerText = 'X';
+                                                c4 = 1;
+                
+                                                document.getElementById('res').innerText = 'Draw';
+                                                setTimeout(reload, 3000);
+                                                function reload()
+                                                {
+                                                    window.location.reload();
+                                                }
+                                            }
+                                        },{once:true});
+
+                                        eight.addEventListener('click',()=>{
+                                            if(p3 == 0)
+                                            {
+                                                p3 = 8;
+                                                //seven.disabled = 'true';
+                                                eight.style.backgroundColor = '#F8EA8C'
+                                                eight.innerText = 'O';
+                        
+                                                four.disabled = 'true';
+                                                four.style.backgroundColor = '#84F8C8';
+                                                four.innerText = 'X';
+                                                c4 = 4;
+                
+                                                document.getElementById('res').innerText = 'Computer Wins';
+                                                setTimeout(reload, 3000);
+                                                function reload()
+                                                {
+                                                    window.location.reload();
+                                                }
+                                            }
+                                        },{once:true});
+                                    }
+                                }
+                            },{once:true});
+
+                            four.addEventListener('click',()=>{
+                                if(p2 == 0)
+                                {
+                                    p2 = 4;
+                                    //seven.disabled = 'true';
+                                    four.style.backgroundColor = '#F8EA8C'
+                                    four.innerText = 'O';
+            
+                                    three.disabled = 'true';
+                                    three.style.backgroundColor = '#84F8C8';
+                                    three.innerText = 'X';
+                                    c3 = 3;
+    
+                                    document.getElementById('res').innerText = 'Computer Wins';
+                                    setTimeout(reload, 3000);
+                                    function reload()
+                                    {
+                                        window.location.reload();
+                                    }
+                                }
+                            },{once:true});
+
+                            six.addEventListener('click',()=>{
+                                if(p2 == 0)
+                                {
+                                    p2 = 6;
+                                    //seven.disabled = 'true';
+                                    six.style.backgroundColor = '#F8EA8C'
+                                    six.innerText = 'O';
+            
+                                    three.disabled = 'true';
+                                    three.style.backgroundColor = '#84F8C8';
+                                    three.innerText = 'X';
+                                    c3 = 3;
+    
+                                    document.getElementById('res').innerText = 'Computer Wins';
+                                    setTimeout(reload, 3000);
+                                    function reload()
+                                    {
+                                        window.location.reload();
+                                    }
+                                }
+                            },{once:true});
+
+                            eight.addEventListener('click',()=>{
+                                if(p2 == 0)
+                                {
+                                    p2 = 8;
+                                    //seven.disabled = 'true';
+                                    eight.style.backgroundColor = '#F8EA8C'
+                                    eight.innerText = 'O';
+            
+                                    three.disabled = 'true';
+                                    three.style.backgroundColor = '#84F8C8';
+                                    three.innerText = 'X';
+                                    c3 = 3;
+    
+                                    document.getElementById('res').innerText = 'Computer Wins';
+                                    setTimeout(reload, 3000);
+                                    function reload()
+                                    {
+                                        window.location.reload();
+                                    }
+                                }
+                            },{once:true});
+                        }
+                    }
+                },{once:true});
+                
+        };
+    });
+</script>
+</body>
+</html>
